@@ -4,6 +4,7 @@ import { ImgSlider } from "./components/img-slider";
 import { LightDarkMode } from "./components/light-dark-mode";
 import { LoadMoreBtn } from "./components/load-more-btn";
 import { RandomColor } from "./components/random-color";
+import { ScrollIndicator } from "./components/scroll-indicator";
 import { StarRating } from "./components/star-rating";
 
 export function App() {
@@ -23,7 +24,9 @@ export function App() {
 
       {/* <LoadMoreBtn /> */}
 
-      <LightDarkMode />
+      {/* <LightDarkMode /> */}
+
+      <ScrollIndicator url={"https://dummyjson.com/products?limit=100"} />
     </div>
   );
 }
