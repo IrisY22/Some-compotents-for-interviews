@@ -34,9 +34,15 @@ export function ImgSlider({ url, limit = 4, page }) {
     return <div>Error occured! {errorMsg}</div>;
   }
 
-  function handlePrev() {}
+  function handlePrev() {
+    setCurrSlide(currSlide === 0 ? imgs.length - 1 : currSlide - 1);
+    console.log(currSlide);
+  }
 
-  function handleNext() {}
+  function handleNext() {
+    setCurrSlide(currSlide === imgs.length - 1 ? 0 : currSlide + 1);
+    console.log(currSlide);
+  }
   return (
     <div className="container">
       <BsArrowLeftCircleFill
@@ -44,12 +50,14 @@ export function ImgSlider({ url, limit = 4, page }) {
         onClick={handlePrev}
       />
       {imgs && imgs.length
-        ? imgs.map((img) => (
+        ? imgs.map((img, index) => (
             <img
               key={img.id}
               alt={img.download_url}
               src={img.download_url}
-              className="curr-img"
+              className={
+                currSlide === index ? "curr-img" : "curr-img hide-curr-img"
+              }
             />
           ))
         : null}
@@ -60,7 +68,15 @@ export function ImgSlider({ url, limit = 4, page }) {
       <span className="circle-indicators">
         {imgs && imgs.length
           ? imgs.map((_, index) => (
-              <button key={index} className="curr-indicator"></button>
+              <button
+                key={index}
+                className={
+                  currSlide === index
+                    ? "curr-indicator"
+                    : "curr-indicator update-curr-indicator"
+                }
+                onClick={() => setCurrSlide(index)}
+              ></button>
             ))
           : null}
       </span>
